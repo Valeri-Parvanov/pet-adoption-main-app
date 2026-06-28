@@ -36,6 +36,11 @@ public class AuthController {
             return "auth/register";
         }
 
+        if (!registerRequest.getPassword().equals(registerRequest.getConfirmPassword())) {
+            bindingResult.rejectValue("confirmPassword", "password.mismatch", "Passwords do not match");
+            return "auth/register";
+        }
+
         try {
             userService.register(registerRequest.getEmail(), registerRequest.getPassword(),
                     registerRequest.getFirstName(), registerRequest.getLastName());
