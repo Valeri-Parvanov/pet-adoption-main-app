@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shelters - Pet Adoption</title>
+</head>
+<body>
+<h1>Shelters</h1>
+
+<p><a th:href="@{/shelters/new}">Register a new shelter</a></p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="shelter : ${shelters}">
+            <td th:text="${shelter.name}"></td>
+            <td th:text="${shelter.address}"></td>
+            <td th:text="${shelter.phone}"></td>
+            <td th:text="${shelter.email}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<p><a th:href="@{/}">Back to home</a></p>
+</body>
+</html>
