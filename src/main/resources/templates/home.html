@@ -21,6 +21,14 @@
 <body>
 <h1>Welcome to the Pet Adoption Platform</h1>
 <p>Find your new best friend.</p>
-<p><a th:href="@{/logout}">Logout</a></p>
+<p>
+    <a th:href="@{/pets}">Browse pets</a> |
+    <a th:href="@{/shelters}">Shelters</a> |
+    <a th:href="@{/requests/my}">My requests</a> |
+    <a th:href="@{/requests/incoming}">Incoming requests</a>
+</p>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>
