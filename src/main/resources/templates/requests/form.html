@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Adoption - Pet Adoption</title>
+</head>
+<body>
+<h1 th:text="'Request to adopt ' + ${pet.name}"></h1>
+
+<form th:action="@{/pets/{id}/requests(id=${pet.id})}" th:object="${adoptionRequestRequest}" method="post">
+    <div>
+        <label>Message</label>
+        <textarea th:field="*{message}"></textarea>
+        <p th:if="${#fields.hasErrors('message')}" th:errors="*{message}" style="color:red;"></p>
+    </div>
+    <button type="submit">Send request</button>
+</form>
+
+<p><a th:href="@{/pets}">Back to pets</a></p>
+</body>
+</html>

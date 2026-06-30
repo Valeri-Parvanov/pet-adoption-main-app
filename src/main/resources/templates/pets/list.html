@@ -17,6 +17,7 @@
             <th>Breed</th>
             <th>Age</th>
             <th>Shelter</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -26,10 +27,12 @@
             <td th:text="${pet.breed}"></td>
             <td th:text="${pet.age}"></td>
             <td th:text="${pet.shelter.name}"></td>
+            <td><a th:href="@{/pets/{id}/requests/new(id=${pet.id})}">Request adoption</a></td>
         </tr>
     </tbody>
 </table>
 
+<p><a th:href="@{/requests/my}">My requests</a> | <a th:href="@{/requests/incoming}">Incoming requests</a></p>
 <p><a th:href="@{/}">Back to home</a></p>
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Incoming Adoption Requests - Pet Adoption</title>
+</head>
+<body>
+<h1>Incoming Adoption Requests</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Pet ID</th>
+            <th>Requester ID</th>
+            <th>Status</th>
+            <th>Message</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="request : ${requests}">
+            <td th:text="${request.petId}"></td>
+            <td th:text="${request.requesterId}"></td>
+            <td th:text="${request.status}"></td>
+            <td th:text="${request.message}"></td>
+            <td th:text="${request.createdAt}"></td>
+            <td th:if="${request.status.name() == 'PENDING'}">
+                <form th:action="@{/requests/{id}/approve(id=${request.id})}" method="post" style="display:inline;">
+                    <button type="submit">Approve</button>
+                </form>
+                <form th:action="@{/requests/{id}/reject(id=${request.id})}" method="post" style="display:inline;">
+                    <button type="submit">Reject</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p><a th:href="@{/pets}">Back to pets</a></p>
+</body>
+</html>
