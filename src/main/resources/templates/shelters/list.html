@@ -16,6 +16,7 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,12 @@
             <td th:text="${shelter.address}"></td>
             <td th:text="${shelter.phone}"></td>
             <td th:text="${shelter.email}"></td>
+            <td>
+                <a th:href="@{/shelters/{id}/edit(id=${shelter.id})}">Edit</a>
+                <form th:action="@{/shelters/{id}/delete(id=${shelter.id})}" method="post" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Delete this shelter?')">Delete</button>
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>

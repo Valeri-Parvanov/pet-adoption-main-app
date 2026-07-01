@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Pet - Pet Adoption</title>
+</head>
+<body>
+<h1>Edit pet</h1>
+
+<form th:action="@{/pets/{id}(id=${petId})}" th:object="${petRequest}" method="post">
+    <div>
+        <label>Name</label>
+        <input type="text" th:field="*{name}" />
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></p>
+    </div>
+    <div>
+        <label>Species</label>
+        <select th:field="*{species}">
+            <option th:each="s : ${species}" th:value="${s}" th:text="${s}"></option>
+        </select>
+        <p th:if="${#fields.hasErrors('species')}" th:errors="*{species}" style="color:red;"></p>
+    </div>
+    <div>
+        <label>Breed</label>
+        <input type="text" th:field="*{breed}" />
+    </div>
+    <div>
+        <label>Age</label>
+        <input type="number" th:field="*{age}" />
+        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color:red;"></p>
+    </div>
+    <div>
+        <label>Description</label>
+        <textarea th:field="*{description}"></textarea>
+    </div>
+    <div>
+        <label>Shelter</label>
+        <select th:field="*{shelterId}">
+            <option th:each="shelter : ${shelters}" th:value="${shelter.id}" th:text="${shelter.name}"></option>
+        </select>
+        <p th:if="${#fields.hasErrors('shelterId')}" th:errors="*{shelterId}" style="color:red;"></p>
+    </div>
+    <button type="submit">Save changes</button>
+</form>
+
+<p><a th:href="@{/pets}">Back to pets</a></p>
+</body>
+</html>

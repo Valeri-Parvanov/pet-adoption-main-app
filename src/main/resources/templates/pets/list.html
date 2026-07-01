@@ -27,7 +27,13 @@
             <td th:text="${pet.breed}"></td>
             <td th:text="${pet.age}"></td>
             <td th:text="${pet.shelter.name}"></td>
-            <td><a th:href="@{/pets/{id}/requests/new(id=${pet.id})}">Request adoption</a></td>
+            <td>
+                <a th:href="@{/pets/{id}/requests/new(id=${pet.id})}">Request adoption</a>
+                <a th:href="@{/pets/{id}/edit(id=${pet.id})}">Edit</a>
+                <form th:action="@{/pets/{id}/delete(id=${pet.id})}" method="post" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Delete this pet?')">Delete</button>
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>
